@@ -6,7 +6,7 @@
 /*   By: tdefresn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:24:21 by tdefresn          #+#    #+#             */
-/*   Updated: 2015/12/04 14:59:58 by scluzeau         ###   ########.fr       */
+/*   Updated: 2015/12/04 16:03:47 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define TEST_STR
 # define TEST_MEM
 # define TEST_LST
-# define TEST_EXTRA
 #endif
 
 #define LINUX
@@ -1111,18 +1110,6 @@ void		test_lst()
 		ft_lstdel(&new_list, &delone);
 }
 
-void		test_extra()
-{
-	ft_putendl("== pow ==");
-	ft_putstr("3^4: ");
-	ft_putnbr(ft_pow(3, 4));
-	ft_putchar('\n');
-	ft_putstr("12^7: ");
-	ft_putnbr(ft_pow(12, 7));
-	ft_putchar('\n');
-	ft_putchar('\n');
-}
-
 int		main(int argc, char **argv)
 {
 	if (argc < 0 || argv[0][0] == '\0')
@@ -1178,8 +1165,5 @@ int		main(int argc, char **argv)
 #endif
 #ifdef TEST_LST
 	test_lst();
-#endif
-#ifdef TEST_EXTRA
-	test_extra();
 #endif
 }
