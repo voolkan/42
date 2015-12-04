@@ -6,7 +6,7 @@
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 15:26:10 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:26:11 by scluzeau         ###   ########.fr       */
+/*   Updated: 2015/12/04 19:15:55 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ char	*ft_strnstr(char const *s1, char const *s2, size_t n)
 	while (s1[i] && i < n)
 	{
 		j = 0;
-		while (s1[i + j] == s2[j] && (i + j) < n)
+		while (s2[j] && s1[i + j] == s2[j] && (i + j) < n)
 			j++;
 		if (!s2[j])
 			return ((char *)&s1[i]);
+		if (!s1[i])
+			break;
 		i++;
 	}
 	return (NULL);

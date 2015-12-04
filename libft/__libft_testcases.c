@@ -6,7 +6,7 @@
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 16:51:37 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 16:51:42 by scluzeau         ###   ########.fr       */
+/*   Updated: 2015/12/04 19:06:57 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define TEST_LST
 #endif
 
-#define LINUX
+#define LINUXe
 
 #include <libft.h>
 
@@ -27,7 +27,7 @@
 // is****
 #include <ctype.h>
 
-#ifdef LINUXe
+#ifdef LINUX
 // strnstr
 # include <bsd/string.h>
 #endif
