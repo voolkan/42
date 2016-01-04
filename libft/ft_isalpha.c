@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:24:09 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:24:11 by scluzeau         ###   ########.fr       */
+/*   Created: 2015/12/04 15:11:00 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 16:03:15 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-char	*ft_strmap(char const *s, char (*f)(char))
+int		ft_isalpha(int c)
 {
-	char	*new_str;
-	int		i;
-
-	new_str = ft_strnew(sizeof(char) * (ft_strlen(s) + 1));
-	if (new_str)
-	{
-		i = 0;
-		while (s[i] != '\0')
-		{
-			new_str[i] = f(s[i]);
-			i++;
-		}
-		new_str[i] = '\0';
-	}
-	return (new_str);
+	if (ft_islower(c) || ft_isupper(c))
+		return (1);
+	return (0);
 }

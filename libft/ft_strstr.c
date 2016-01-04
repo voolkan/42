@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:23:34 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:23:36 by scluzeau         ###   ########.fr       */
+/*   Created: 2016/01/04 15:41:06 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 16:00:13 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-size_t	ft_strlcat(char *dst, char const *src, size_t size)
+char	*ft_strstr(char const *s1, char const *s2)
 {
-	char	*ptr;
-	size_t	i;
-	size_t	total_size;
-	size_t	max;
+	char const	*ptr_s1;
+	char const	*ptr_s2;
 
-	total_size = ft_strlen(dst) + ft_strlen(src);
-	max = size - ft_strlen(dst) - 1 * sizeof(char);
-	ptr = dst;
-	i = 0;
-	while (*ptr)
+	if (!*s2)
+		return ((char *)s1);
+	while (*s1)
 	{
-		if (i > size)
-			return (size + ft_strlen(src));
-		i++;
-		ptr++;
+		ptr_s1 = s1;
+		ptr_s2 = s2;
+		while (*ptr_s2 == *ptr_s1 && *ptr_s2 != '\0')
+		{
+			ptr_s1++;
+			ptr_s2++;
+		}
+		if (*ptr_s2 == '\0')
+			return ((char *)s1);
+		s1++;
 	}
-	i = 0;
-	while (i < max && src[i])
-	{
-		ptr[i] = src[i];
-		i++;
-	}
-	ptr[i + 1] = '\0';
-	return (total_size);
+	return (NULL);
 }

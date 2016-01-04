@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:16:06 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:16:08 by scluzeau         ###   ########.fr       */
+/*   Created: 2015/12/04 15:25:57 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 16:05:57 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void	*ft_memccpy(void *dst, void const *src, int c, size_t n)
+char	*ft_strnew(size_t size)
 {
+	char	*str;
 	size_t	i;
 
-	i = 0;
-	while (i < n)
+	str = (char *)malloc(size + 1);
+	if (str)
 	{
-		if (((char*)src)[i] == c)
-			return (&((char*)dst)[i + 1]);
-		((char*)dst)[i] = ((char*)src)[i];
-		i++;
+		i = 0;
+		while (i < size)
+			str[i++] = '\0';
+		str[i] = '\0';
 	}
-	return (NULL);
+	return (str);
 }

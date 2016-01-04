@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:09:47 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:09:50 by scluzeau         ###   ########.fr       */
+/*   Created: 2015/12/04 15:23:34 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 15:29:32 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-int		ft_atoi(char const *str)
+size_t	ft_strlcat(char *dst, char const *src, size_t size)
 {
-	int		sign;
-	int		r;
+	char	*ptr;
+	size_t	i;
+	size_t	total_size;
+	size_t	max;
 
-	r = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (str[0] == '-')
+	total_size = ft_strlen(dst) + ft_strlen(src);
+	max = size - ft_strlen(dst) - 1 * sizeof(char);
+	ptr = dst;
+	i = 0;
+	while (*ptr)
 	{
-		sign = -1;
-		str++;
+		if (i > size)
+			return (size + ft_strlen(src));
+		i++;
+		ptr++;
 	}
-	while (ft_isdigit(*str))
+	i = 0;
+	while (i < max && src[i])
 	{
-		r *= 10;
-		r += (*str - '0');
-		str++;
+		ptr[i] = src[i];
+		i++;
 	}
-	return (r * sign);
+	ptr[i] = '\0';
+	return (total_size);
 }

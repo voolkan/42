@@ -6,7 +6,7 @@
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 15:13:51 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:14:06 by scluzeau         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:28:43 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	ft_lstadd(t_list **alst, t_list *new)
 {
 	new->next = *alst;
+	*alst = new;
 }

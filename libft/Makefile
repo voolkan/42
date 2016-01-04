@@ -5,90 +5,56 @@
 #                                                     +:+ +:+         +:+      #
 #    By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/12/04 16:50:12 by scluzeau          #+#    #+#              #
-#    Updated: 2015/12/04 16:50:17 by scluzeau         ###   ########.fr        #
+#    Created: 2015/12/21 13:47:00 by scluzeau          #+#    #+#              #
+#    Updated: 2016/01/04 15:25:58 by scluzeau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+NAME=libft.a
 
-NAME	= libft.a
-EXEC_ALL= test_all
-EXEC_IS	= test_is
-EXEC_PUT= test_put
-EXEC_MEM= test_mem
-EXEC_STR= test_str
-EXEC_LST= test_lst
-EXEC_EXTRA	= test_extra
+CC=gcc
 
-EXEC = $(EXEC_ALL) $(EXEC_IS) $(EXEC_PUT) $(EXEC_MEM) $(EXEC_STR) $(EXEC_LST) $(EXEC_EXTRA)
+CFLAGS=-Wall -Wextra -Werror
 
-.PHONY: all $(NAME) clean fclean re
+RM=rm -f
 
-CC	= gcc
-CFLAGS	= -Wall -Werror -Wextra -I./includes -D LIBFT_EXTRA
-LDFLAGS	= -L. -lft
-LDLIBS	= 
-#-lbsd
+LDFLAGS=-L.
 
-SRC_PREFIX = ./src/
+LDLIBS=-lft
 
-SRC   = memset bzero memcpy memccpy memmove memchr memcmp strdup strcpy strncpy \
-strcat strncat strlcat strchr strrchr strstr strnstr strcmp strncmp atoi \
-isalpha isdigit isalnum isascii isprint toupper tolower memalloc memdel strnew \
-strdel strclr striter striteri strmap strmapi strequ strnequ strsub strjoin \
-strtrim strsplit itoa strlen putchar putstr putnbr putendl putchar_fd putstr_fd \
-putnbr_fd putendl_fd lstnew lstdelone lstdel lstadd lstiter lstmap isupper islower isspace
+HDDIRS=-I includes/
 
-SRC := $(addsuffix .c, $(SRC))
-SRC := $(addprefix $(SRC_PREFIX)ft_, $(SRC))
 
-OBJ = $(SRC:.c=.o)
 
-all: $(NAME) $(EXEC)
+SRC=ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
+ 	ft_memmove.c ft_memchr.c ft_memcmp.c ft_memalloc.c ft_memdel.c \
+	ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c \
+	ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c \
+	ft_strcmp.c ft_strncmp.c ft_atoi.c \
+	ft_isspace.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+	ft_toupper.c ft_tolower.c ft_islower.c ft_isupper.c \
+	ft_strnew.c ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c \
+	ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c \
+	ft_strtrim.c ft_strsplit.c \
+	ft_itoa.c \
+	ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
+	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+	ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_lstnew.c \
 
-nolib: testclean $(EXEC)
-
-$(NAME): $(OBJ)
-	ar rc $@ $^
-	ranlib $(NAME)
-
-$(EXEC_ALL):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_ALL
-
-$(EXEC_MEM):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_MEM
-
-$(EXEC_STR):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_STR
-
-$(EXEC_IS):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_IS
-
-$(EXEC_PUT):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_PUT
-
-$(EXEC_LST):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_LST
-
-$(EXEC_EXTRA):
-	gcc -o $@ $(CFLAGS) __libft_testcases.c $(LDFLAGS) \
- $(LDLIBS) -D TEST_EXTRA
-
-%.o: %.c
-	$(CC) -o $@ -c $< $(CFLAGS)
-
-testclean:
-	/bin/rm -f $(EXEC)
-
+OBJ=$(SRC:.c=.o)
+	
+$(NAME): includes/libft.h
+		$(CC) $(CFLAGS) -c $(SRC) $(HDDIRS)
+		ar rc $(NAME) $(OBJ)
+		ranlib $(NAME)
+				
+all: $(NAME)
+				
 clean:
-	/bin/rm -f ${OBJ}
-
-fclean: clean testclean
-	/bin/rm -f $(NAME)
-
+		$(RM) $(OBJ)
+					
+fclean: clean
+		$(RM) $(NAME)
+						
 re: fclean all
+						
+.PHONY: clean fclean

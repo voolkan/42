@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_islower.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:11:41 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:11:45 by scluzeau         ###   ########.fr       */
+/*   Created: 2015/12/04 15:09:47 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 14:29:43 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_islower(int c)
+#include <libft.h>
+
+int		ft_atoi(char const *str)
 {
-	return (c >= 'a' && c <= 'z');
+	int		sign;
+	int		r;
+
+	r = 0;
+	sign = 1;
+	while (ft_isspace(*str))
+		str++;
+	if (str[0] == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	while (ft_isdigit(*str))
+	{
+		r *= 10;
+		r += (*str - '0');
+		str++;
+	}
+	return (r * sign);
 }

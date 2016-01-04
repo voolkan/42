@@ -6,7 +6,7 @@
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 16:49:53 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 16:49:54 by scluzeau         ###   ########.fr       */
+/*   Updated: 2016/01/04 14:28:12 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,10 @@ void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-# ifdef LIBFT_EXTRA
-
 int				ft_isspace(int c);
 int				ft_isupper(int c);
 int				ft_islower(int c);
 t_queue			*ft_queuenew();
 t_stack			*ft_stacknew();
 int				ft_pow(int b, int e);
-# endif
 #endif

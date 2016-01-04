@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdefresn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/01 12:36:14 by tdefresn          #+#    #+#             */
-/*   Updated: 2015/12/03 10:35:04 by tdefresn         ###   ########.fr       */
+/*   Created: 2015/12/04 15:24:09 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 16:07:18 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-char	*ft_strstr(char const *s1, char const *s2)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	char const	*ptr_s1;
-	char const	*ptr_s2;
+	char	*new_str;
+	int		i;
 
-	while (*s1)
+	new_str = ft_strnew(sizeof(char) * (ft_strlen(s)));
+	if (new_str)
 	{
-		ptr_s1 = s1;
-		ptr_s2 = s2;
-		while (*ptr_s2 == *ptr_s1)
+		i = 0;
+		while (s[i] != '\0')
 		{
-			ptr_s1++;
-			ptr_s2++;
+			new_str[i] = f(s[i]);
+			i++;
 		}
-		if (!*ptr_s2)
-			return ((char *)s1);
-		s1++;
+		new_str[i] = '\0';
 	}
-	return (NULL);
+	return (new_str);
 }

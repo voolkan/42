@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:11:00 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:11:03 by scluzeau         ###   ########.fr       */
+/*   Created: 2015/12/04 15:27:23 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 14:19:16 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-int		ft_isalpha(int c)
+int		ft_toupper(int c)
 {
-	return (ft_islower(c) || ft_isupper(c));
+	if (ft_islower(c))
+		return (c - 'a' + 'A');
+	return (c);
 }

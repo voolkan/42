@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:27:23 by scluzeau          #+#    #+#             */
-/*   Updated: 2015/12/04 15:27:26 by scluzeau         ###   ########.fr       */
+/*   Created: 2015/12/04 15:27:10 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/04 14:20:08 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-int		ft_toupper(int c)
+int		ft_tolower(int c)
 {
-	if (ft_islower(c))
-		return (c - 'a' + 'A');
+	if (ft_isupper(c))
+		return (c + 'a' - 'A');
 	return (c);
 }
