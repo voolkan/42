@@ -5,65 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:26:44 by scluzeau          #+#    #+#             */
-/*   Updated: 2016/01/04 16:30:59 by scluzeau         ###   ########.fr       */
+/*   Created: 2016/01/07 18:07:16 by scluzeau          #+#    #+#             */
+/*   Updated: 2016/01/07 18:14:33 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-static void		cleartable(char **table, int last_idx)
+char	**ft_strsplit(char const *s, char c)
 {
-	int i;
+	char	**res;
+	int		i;
+	int		j;
+	int		k;
 
 	i = 0;
-	while (i < last_idx)
+	j = 0;
+	while (s[i])
 	{
-		free(table[i]);
-		table[i] = NULL;
-		i++;
+		while (s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		j++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-}
-
-static char		**setelem(char **table, int idx, char *str)
-{
-	table[idx] = str;
-	if (!table[idx])
+	res = (char **)malloc(sizeof(char *) * (j + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	k = 0;
+	while (s[i])
 	{
-		cleartable(table, idx);
-		free(table);
-		table = NULL;
-	}
-	return (table);
-}
-
-static char		**split(char const *s, char c, size_t count)
-{
-	char	**words_table;
-	char	*str;
-
-	while (*s == c)
-		s++;
-	str = ft_strchr(s, c);
-	if (!str)
+		j = 0;
+		while (s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		while (s[i + j] != c && s[i + j])
+			j++;
+	res[k] = (char *)malloc(sizeof(char) * (j + 1));
+	if (!res[k])
 	{
-		words_table = (char **)ft_memalloc(sizeof(char *)
-							* (count + 2));
-		if (words_table)
-			words_table = setelem(words_table, count,
-									ft_strsub(s, 0, ft_strlen(s)));
-		if (words_table)
-			words_table = setelem(words_table, count, ft_strdup("\0"));
-		return (words_table);
+		free (res);
+		return (NULL);
 	}
-	words_table = split(str, c, count + 1);
-	if (words_table)
-		words_table = setelem(words_table, count,
-								ft_strsub(s, 0, ((int)str - (int)s)));
-	return (words_table);
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-	return (split(s, c, 0));
+	res[k] = ft_strncpy(res[k], &s[i], j);
+	res[k][j] = '\0';
+	i = i + j;
+	k++;
+	}
+	res[k] = NULL;
+	return (res);
 }

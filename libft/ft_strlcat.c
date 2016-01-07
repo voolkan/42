@@ -6,7 +6,7 @@
 /*   By: scluzeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 15:23:34 by scluzeau          #+#    #+#             */
-/*   Updated: 2016/01/04 15:29:32 by scluzeau         ###   ########.fr       */
+/*   Updated: 2016/01/07 17:43:00 by scluzeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ size_t	ft_strlcat(char *dst, char const *src, size_t size)
 	i = 0;
 	while (*ptr)
 	{
-		if (i > size)
+		if (i++ >= size)
 			return (size + ft_strlen(src));
-		i++;
 		ptr++;
 	}
+	if (i == size)
+		return (size + ft_strlen(src));
 	i = 0;
 	while (i < max && src[i])
 	{
